@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="{{ 'comparable.scss' | asset_url }}" />
+<script src="{{ 'comparable.js' | asset_url }}" type="text/javascript" defer></script>
+<script src="{{ 'comparable-config.js' | asset_url }}" type="text/javascript" defer></script>
+{% if page.handle == 'compare' %}
+  <script src="{{ 'comparable-table.js' | asset_url }}" type="text/javascript" defer></script>
+  <script>
+    var comparableVars = {
+      moneyFormat: "{{ shop.money_format | replace: '"', "'" }}",
+    }
+  </script>
+{% endif %}

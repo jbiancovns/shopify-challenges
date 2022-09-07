@@ -1,0 +1,11 @@
+{% assign products_arr = "" | split: "," %}
+
+{% for product in collection.products %}
+{%- assign title = product.title | replace: "'", '"' | replace: '"', '\"' -%}
+{% assign fields_data = '{"id":"' | append:product.id | append: '", "title":"' | append:title | append: '", "handle":"' | append:product.handle | append: '", "currentVariantId":"' | append:product.selected_or_first_available_variant.id | append: '"}' %}
+  {% assign tmp_arr = fields_data | split: "," %}
+  {% assign products_arr = products_arr|concat:tmp_arr %}
+{% endfor %}
+{% assign joined_products = products_arr | join: "," %}
+{% assign compare_products = "[" | append: joined_products | append:"]" %}
+<span data-behavior="comparison_data" data-products='{{ compare_products }}'></span>
