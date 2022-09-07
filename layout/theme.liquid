@@ -121,6 +121,11 @@
       <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'">
     {%- endif -%}
 
+    {{ 'tailwind.css' | asset_url | stylesheet_tag }}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker.min.css">  
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker.min.js"></script>
+
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
    {% render 'comparable-head' %}
  </head>

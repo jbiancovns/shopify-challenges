@@ -1,0 +1,9 @@
+-   El control debe seguir el estilo del theme seleccionado.
+-   Configuración del control
+    -   El control debe mostrarse SI Y SOLO SI el usuario lo desea
+    -   Se debe poder seleccionar si entrega o no el fin de semana
+    -   Se debe poder configurar el mínimo de días
+    -   Se debe poder configurar el máximo de días
+    -   Se debe poder configurar un texto adicional
+-   La fecha debe poder verse en la orden una vez generada
+-   El mensaje de si se entrega o no los fines de semana debe de estar atado a la configuración anteriormente pedida.
