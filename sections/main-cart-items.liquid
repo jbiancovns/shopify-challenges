@@ -262,23 +262,45 @@ input#delivery:focus-visible {
     <p class="visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
     <p class="visually-hidden" id="shopping-cart-line-item-status" aria-live="polite" aria-hidden="true" role="status">{{ 'accessibility.loading' | t }}</p>
     {%- if shop.metafields.challenges.challenge1.enabled == true -%}
-    <div class="tw-flex tw-justify-end tw-mt-4">
-        <label for="">Delivery date</label>
-        <input type="text" id="delivery" class="tw-ml-2 tw-border-1 tw-border-black tw-p-3 tw-rounded-md" name="attributes[Delivery Date]">
-    </div>
+        <div class="tw-flex tw-justify-end tw-mt-4">
+            <label for="">Delivery date</label>
+            <input type="text" id="delivery" class="tw-ml-2 tw-border-1 tw-border-black tw-p-3 tw-rounded-md" name="attributes[Delivery Date]">
+        </div>
+        {%- if shop.metafields.challenges.challenge1.weekends == true -%}
+            <span class="tw-block tw-text-right tw-text-xl tw-text-red-500">{{shop.metafields.challenges.challenge1.additionalText}}</span>
+        {%- endif -%}
     {%- endif -%}
   </form>
 </cart-items>
 <script>
+function getDate(initialDate, days, weekendsDelivery) {
+    const date = new Date(initialDate);
+    for (let i = 0; i < days; i++) {
+        date.setDate(date.getDate() + 1)
+        const dayOfWeek = date.getDay();
+        if(!weekendsDelivery){
+            if(dayOfWeek == 0 || dayOfWeek == 6) {
+                days++;
+            }
+        }
+    }
+
+    return date;
+};
 const options = JSON.parse('{{shop.metafields.challenges.challenge1 | json}}');
 const elem = document.getElementById('delivery');
-const datepicker = new Datepicker(elem, {
+const initDate = getDate(new Date(), options.minDays, options.weekends);
+const finishDate = getDate(new Date(), options.maxDays, options.weekends);
+const datePickerOptions = {
     "buttonClass": "datePickerButton",
-    "daysOfWeekDisabled": [0,6],
     "format": 'dd/mm/yyyy',
-    //"maxDate": ""
-    //"minDate": ""
-}); 
+    "minDate": initDate,
+    "maxDate": finishDate,
+};
+if (options.weekends == false) {
+    datePickerOptions.daysOfWeekDisabled = [0,6];
+}
+const datepicker = new Datepicker(elem, datePickerOptions); 
 </script>
 
 {% schema %}
