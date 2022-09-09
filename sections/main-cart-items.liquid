@@ -267,7 +267,12 @@ input#delivery:focus-visible {
             <input type="text" id="delivery" class="tw-ml-2 tw-border-1 tw-border-black tw-p-3 tw-rounded-md" name="attributes[Delivery Date]">
         </div>
         {%- if shop.metafields.challenges.challenge1.weekends == true -%}
-            <span class="tw-block tw-text-right tw-text-xl tw-text-red-500">{{shop.metafields.challenges.challenge1.additionalText}}</span>
+            <span class="tw-block tw-text-right tw-text-xl tw-text-red-500">We can deliver your package on weekends</span>
+        {%- else -%}
+            <span class="tw-block tw-text-right tw-text-xl tw-text-red-500">We can't deliver your package on weekends</span>
+        {%- endif -%}
+        {%- if shop.metafields.challenges.challenge1.additionalText != blank -%}
+            <span class="tw-block tw-text-right tw-text-xl tw-text-gray-500">{{shop.metafields.challenges.challenge1.additionalText}}</span>
         {%- endif -%}
     {%- endif -%}
   </form>
@@ -288,6 +293,11 @@ function getDate(initialDate, days, weekendsDelivery) {
     return date;
 };
 const options = JSON.parse('{{shop.metafields.challenges.challenge1 | json}}');
+if(options.minDays > options.maxDays) {
+    let days = options.maxDays;
+    options.maxDays = options.minDays;
+    options.minDays = days;
+};
 const elem = document.getElementById('delivery');
 const initDate = getDate(new Date(), options.minDays, options.weekends);
 const finishDate = getDate(new Date(), options.maxDays, options.weekends);
