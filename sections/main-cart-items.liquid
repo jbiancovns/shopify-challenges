@@ -7,6 +7,26 @@
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 
+
+  {{ 'easyupsell_modal.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'easyupsell_api.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'easyupsell.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'easyupsell_modal.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'easyupsellCookie.js' | asset_url }}" defer="defer"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer="defer" rel="preload"></script>
+  <script>
+    window.onload = function(){ 
+    var products = []
+    {% for line_item in cart.items %}
+      var item = {}
+      products.push("{{line_item.product_id}}")
+    {% endfor %}
+    var total_price = '{{ cart.total_price | money_without_currency }}';
+    var data = {products: products, total: total_price}
+    var upsell_products = getUpsell(data);
+    }
+  </script>
 <cart-items class="page-width{% if cart == empty %} is-empty{% endif %}">
   <div class="title-wrapper-with-link">
     <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>

@@ -1,0 +1,139 @@
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 2% auto;
+  padding: 0px 0 20px 0px;
+  border: 1px solid #888;
+  width: 70%;
+  overflow: hidden;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 20px 20px 0px 0px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.easyupsell-modal-title {
+  text-align: center;
+  font-size: 32px;
+  padding: inherit;
+  padding-top: 20px;
+line-height: 40px;
+}
+.easyupsell-modal-product-container {
+  text-align: center;
+  display: inline-block;
+  width: 33%;
+  vertical-align: top;
+  min-height: 300px;
+}
+@media screen and (max-width: 768px) {
+  .easyupsell-modal-product-container {
+    width: 100%;
+  }
+}
+.easyupsell-modal-excerpt {
+  margin-top: 0;
+  font-size: 16px;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.easyupsell-modal-product-title {
+  text-transform: capitalize;
+  margin-top: 0;
+  font-size: 16px;
+  line-height: initial;
+}
+.easyupsell-modal-product-title a {
+  text-decoration: none;
+  color: inherit;
+}
+.easyupsell-modal-product-image {
+  max-height: 150px;
+  margin: 20px 0px;
+  padding: 0 10px;
+max-width: 100%;
+  object-fit: cover;
+}
+.easyupsell-modal-product-price {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 10px;
+}
+.easyupsell-modal-product-discount {
+  font-weight: 400;
+  font-size: 14px;
+}
+.easyupsell-modal-product-qty {
+  width: 15%;
+  min-width: 40px !important;
+  margin-left: 10px;
+}
+.easyupsell-modal-product-qty:focus-visible {
+  outline: none;
+  box-shadow: none;
+  outline-offset: none;
+}
+.easyupsell-modal-footer-close {
+  font-style: italic;
+  cursor: pointer;
+  padding-left: 20px;
+}
+.add-to-cart {
+  cursor: pointer;
+  padding: 8px 30%;
+  background-color: #e9431c;
+  border-radius: 12px;
+  color: white;
+}
+
+.options-select-wrapper{
+  min-height:30px!important;
+  display: block!important;
+}
+
+.modal-content.multiline .row {
+  display: flex;
+  align-items: center;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.modal-content.multiline .column {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.modal-content.multiline .column img {
+  max-width: 100%;
+  height: auto;
+}
+.modal-content.multiline .column .add-to-cart {
+  display:inline-block;
+  text-align:center;
+}
