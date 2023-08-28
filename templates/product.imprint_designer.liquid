@@ -1,0 +1,88 @@
+<script type=text/javascript>
+  var pid = {{product.id}};
+  var token = "bHFKdXI0K01mNldPakdxZmw2NW1wWmVOZDY2V2pHcGxpYUtMYVpsMmNuST0=";
+  var url = window.location.href;    
+  if (url.indexOf('?id=') < 0){
+     url = url.substring(0, url.indexOf('?'));
+     url += '?id='+pid+'&key='+token;
+     window.location.href = url;
+  }
+  
+</script>
+<div id="root"></div>
+
+<script type=text/javascript>
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+var browserWdth = window.innerWidth;
+window.addEventListener('resize', function () {
+       if (window.innerWidth < 1024 && browserWdth >=1024) {
+           window.location.reload(true);
+       }
+        if (window.innerWidth >= 1024 && browserWdth < 1024) {
+           window.location.reload(true);
+       }
+    });
+document.addEventListener('DOMContentLoaded', function() {
+  if (isMobile || browserWdth < 1024 || navigator.userAgent.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2) {
+            
+            const allInBody = document.querySelectorAll('body > *');
+            for (const element of allInBody) {
+              element.remove();
+            }
+            var elemDiv = document.createElement('div');
+            elemDiv.id = "root";
+            document.body.appendChild(elemDiv);
+          //add links dynamically
+            var head = document.getElementsByTagName('HEAD')[0];
+            var cssFiles = ["inx-mobile.chunk.css","inx-mobile-main.css"];
+            var arrayLength = cssFiles.length;
+            for (var i = 0; i < arrayLength; i++) {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = "https://cloud.imprintnext.io/mobile/static/css/" + cssFiles[i];
+                head.appendChild(link);
+  
+                console.log(cssFiles[i]);
+                //Do something
+            }
+              
+            loadImpJS("https://cloud.imprintnext.io/config.js?rvn="+Math.floor(1e8*Math.random()), true);
+            loadImpJS("https://cloud.imprintnext.io/mobile/static/js/runtime-main.inx-mobile.js?rvn="+Math.floor(1e8*Math.random()), true);
+            loadImpJS("https://cloud.imprintnext.io/mobile/static/js/inx-mobile.chunk.js?rvn="+Math.floor(1e8*Math.random()), true);
+            loadImpJS("https://cloud.imprintnext.io/mobile/static/js/inx-mobile-main.js?rvn="+Math.floor(1e8*Math.random()), true);
+        }else{
+            var head = document.getElementsByTagName('HEAD')[0];
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = "https://cloud.imprintnext.io/static/css/inx-main.css?rvn=" + Math.floor(1e8*Math.random());
+            head.appendChild(link);
+            
+            loadImpJS("https://cloud.imprintnext.io/config.js?rvn="+Math.floor(1e8*Math.random()), true);
+            loadImpJS("https://cloud.imprintnext.io/static/js/inx-main.js?rvn="+Math.floor(1e8*Math.random()), true);
+        }
+        
+}, false);
+
+  function loadImpJS(FILE_URL, async = true) {
+    let scriptEle = document.createElement("script");
+  
+    scriptEle.setAttribute("src", FILE_URL);
+    scriptEle.setAttribute("type", "text/javascript");
+    scriptEle.setAttribute("async", async);
+  
+    document.body.appendChild(scriptEle);
+  
+    // success event 
+    scriptEle.addEventListener("load", () => {
+      console.log("File loaded")
+    });
+     // error event
+    scriptEle.addEventListener("error", (ev) => {
+      console.log("Error on loading file", ev);
+    });
+  }
+
+</script>
+

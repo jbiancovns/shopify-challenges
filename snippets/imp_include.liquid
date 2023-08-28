@@ -1,0 +1,8 @@
+ {{ 'imp_cart.min.js' | asset_url | script_tag }}
+  {{ 'imp_app.js' | asset_url | script_tag }}
+  {{ 'imp_cart_image.css' | asset_url | stylesheet_tag }}
+  <script type="text/javascript">
+            jQuery(function() {
+               CartJS.init({{ cart | json }}); 
+ 	});
+  </script>

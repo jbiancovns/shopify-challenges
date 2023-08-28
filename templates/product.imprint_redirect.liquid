@@ -1,0 +1,9 @@
+<script type=text/javascript>
+  var metadata = "main_prod";
+  metadata = {{ product.metafields.imprintnext.imprint_prod_rel }};
+  redirectProdHandle = "{{ product.metafields.imprintnext.imprint_prod_rel.value['parent_handle'] }}";
+  
+  if(metadata != "main_prod"){
+      window.location.href="/products/"+redirectProdHandle;
+  }
+</script>
